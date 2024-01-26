@@ -96,33 +96,38 @@ class MyApp extends StatelessWidget {
             ]),
             Column(children: <Widget>[
               // Col3
-              Container(
-                height: 100.0,
-                width: 100.0,
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 3),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Container 5',
-                    style: TextStyle(color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 215, 0, 215),
+                child: Container(
+                  height: 100.0,
+                  width: 100.0,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.white, width: 3),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Container 5',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ),
-              Container(
-                height: 100.0,
-                width: 100.0,
-                color: Colors.red,
-                child: const Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Con 6',
-                    style: TextStyle(fontSize: 30),
+              Expanded(
+                child: Container(
+                  height: 100.0,
+                  width: 100.0,
+                  color: Colors.red,
+                  child: const Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'Con 6',
+                      style: TextStyle(fontSize: 30),
+                    ),
                   ),
                 ),
-              ),
+              )
             ]),
           ],
         ),
