@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:cinemasync/pages/review-list.dart';
-import 'package:cinemasync/pages/review-submit.dart';
+import 'package:cinemasync/themes/theme.dart';
+import 'package:cinemasync/pages/home.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: MainApp(),
-  ));
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -13,48 +11,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: PopupMenuButton(
-            icon: const Icon(Icons.menu),
-            itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                  const PopupMenuItem(
-                    value: 1,
-                    child: ListTile(
-                      leading: Icon(Icons.add),
-                      title: Text('Review List'),
-                    ),
-                  ),
-                  const PopupMenuDivider(),
-                  const PopupMenuItem(
-                    value: 2,
-                    child: ListTile(
-                      leading: Icon(Icons.anchor),
-                      title: Text('Review Submit'),
-                    ),
-                  ),
-                ],
-            onSelected: (value) {
-              if (value == 1) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ReviewListPage(),
-                  ),
-                );
-              }
-              if (value == 2) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ReviewSubmitPage(),
-                  ),
-                );
-              }
-            }),
-        title: const Text('CinemaSync'),
-      ),
-      body: const Center(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      // themeMode: ThemeMode.system,
+      theme: buildTheme(),
+      // darkTheme: buildThemeDark(),
+      home: HomeView(),
     );
   }
 }
