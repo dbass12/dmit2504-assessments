@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cinemasync/pages/review-list.dart';
 import 'package:cinemasync/pages/review-submit.dart';
+import 'package:cinemasync/pages/firebase.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -30,6 +31,14 @@ class HomeViewState extends State<HomeView> {
                       title: Text('Review Submit'),
                     ),
                   ),
+                  const PopupMenuDivider(),
+                  const PopupMenuItem(
+                    value: 3,
+                    child: ListTile(
+                      leading: Icon(Icons.dataset),
+                      title: Text('Firebase Testing'),
+                    ),
+                  ),
                 ],
             onSelected: (value) {
               if (value == 1) {
@@ -45,6 +54,14 @@ class HomeViewState extends State<HomeView> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => ReviewSubmitPage(),
+                  ),
+                );
+              }
+              if (value == 3) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FireBasePage(),
                   ),
                 );
               }
