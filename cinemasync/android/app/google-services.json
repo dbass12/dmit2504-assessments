@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "17805751187",
+    "project_id": "cinemasync-640fa",
+    "storage_bucket": "cinemasync-640fa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17805751187:android:18a4b09849e8ff9e5bae66",
+        "android_client_info": {
+          "package_name": "com.example.cinemasync"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9rb5oO9umjuQvnsof8r4_9eKwhsjN-n8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
