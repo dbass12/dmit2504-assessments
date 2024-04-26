@@ -1,6 +1,8 @@
 // ignore_for_file: file_names, unused_import
 import 'package:cinemasync/themes/colorScheme.dart';
 import 'package:flutter/material.dart';
+import 'package:cinemasync/services/ratings-db.dart';
+import 'package:cinemasync/movie-rating.dart';
 
 class RatingForm extends StatefulWidget {
   final List<String> movieNames;
@@ -14,16 +16,51 @@ class RatingForm extends StatefulWidget {
 
 class _RatingFormState extends State<RatingForm> {
   late List<TextEditingController> controllers;
-  late List<double> ratings;
+  late List<double> ratings = List.filled(5,
+      0.0); // Assuming there are 5 movies initially and default rating is 0.0
 
   @override
   void initState() {
     super.initState();
     controllers = List.generate(
       widget.movieNames.length,
-      (index) => TextEditingController(),
+      (index) => TextEditingController(text: ''),
     );
-    ratings = List.filled(widget.movieNames.length, 0.0);
+
+    // Call the getMovieRatings method to populate the ratings list
+    getMovieRatings();
+  }
+
+  Future<void> getMovieRatings() async {
+    try {
+      List<double> fetchedRatings = await RatingsDB.getMovieRatings();
+      if (fetchedRatings.length <= 4) {
+        fetchedRatings = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+      }
+      setState(() {
+        ratings = fetchedRatings;
+
+        // Assign ratings to text controllers
+        for (int i = 0; i < fetchedRatings.length; i++) {
+          controllers[i].text = fetchedRatings[i].toString();
+        }
+      });
+    } catch (error) {
+      print('error in rating-form: getMovieRatings(): $error');
+      // Handle error
+    }
+  }
+
+  double getRatingForMovie(List<MovieRating> movieRatings, String movieName) {
+    // Iterate over the list of MovieRating objects
+    for (MovieRating rating in movieRatings) {
+      // Check if the movieName matches the desired movie
+      if (rating.movieName == movieName) {
+        // Return the rating for the movie
+        return rating.rating;
+      }
+    }
+    return 0.0;
   }
 
   @override
@@ -42,10 +79,11 @@ class _RatingFormState extends State<RatingForm> {
                   ),
                   const SizedBox(width: 20.0),
                   SizedBox(
-                    width: 60.0, // Adjust the width as needed
+                    width: 85.0, // Adjust the width as needed
                     child: TextFormField(
                       controller: controllers[i],
                       keyboardType: TextInputType.number,
+                      textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(),
                         labelStyle: TextStyle(color: colorScheme.onBackground),
@@ -53,6 +91,7 @@ class _RatingFormState extends State<RatingForm> {
                       onChanged: (value) {
                         setState(() {
                           ratings[i] = double.tryParse(value) ?? 0.0;
+                          print(ratings);
                         });
                       },
                     ),

@@ -1,13 +1,15 @@
 // // ignore_for_file: use_key_in_widget_constructors, avoid_print, file_names
-import 'package:flutter/material.dart';
-import 'package:cinemasync/services/ratings-db.dart';
+import 'package:cinemasync/services/authorization.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 
-class FireBasePage extends StatefulWidget {
+import 'package:flutter/material.dart';
+
+class LogoutPage extends StatefulWidget {
   @override
-  FireBasePageState createState() => FireBasePageState();
+  LogoutPageState createState() => LogoutPageState();
 }
 
-class FireBasePageState extends State<FireBasePage> {
+class LogoutPageState extends State<LogoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,16 +22,10 @@ class FireBasePageState extends State<FireBasePage> {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () async {
-                    await RatingsDB().create();
+                    await Authorization().logOut();
                   },
-                  child: const Text("Create"),
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    await RatingsDB().read();
-                  },
-                  child: const Text("Read"),
-                ),
+                  child: const Text("Log Out"),
+                )
               ]),
         ));
   }

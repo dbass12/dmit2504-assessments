@@ -4,4 +4,16 @@ class MovieRating {
   final double rating;
 
   MovieRating({required this.movieName, required this.rating});
+
+  factory MovieRating.fromJson(Map<String, dynamic> json) {
+    return MovieRating(
+      movieName: json['movieName'],
+      rating: json['rating'],
+    );
+  }
+
+  @override
+  String toString() {
+    return 'MovieRating{movieName: $movieName, rating: $rating}';
+  }
 }

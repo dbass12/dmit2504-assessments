@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cinemasync/pages/review-list.dart';
 import 'package:cinemasync/pages/review-submit.dart';
-import 'package:cinemasync/pages/firebase.dart';
+import 'package:cinemasync/pages/account-page.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -35,8 +35,8 @@ class HomeViewState extends State<HomeView> {
                   const PopupMenuItem(
                     value: 3,
                     child: ListTile(
-                      leading: Icon(Icons.dataset),
-                      title: Text('Firebase Testing'),
+                      leading: Icon(Icons.person),
+                      title: Text('Account'),
                     ),
                   ),
                 ],
@@ -61,7 +61,7 @@ class HomeViewState extends State<HomeView> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => FireBasePage(),
+                    builder: (context) => AccountPage(),
                   ),
                 );
               }
